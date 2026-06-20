@@ -14,5 +14,6 @@ export async function connectDB() {
   } catch (error) {
     console.error("MongoDB Connection Error:", error.message);
     process.exit(1);
+    // 1 MEAN FAILED ,  0  MEAN SUCCESS
   }
 }
