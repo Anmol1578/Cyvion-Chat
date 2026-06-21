@@ -8,7 +8,7 @@ function App() {
   return (
    <div>
 
-    <h1>MY APP</h1>
+    <h1>MY FRONTEND APP</h1>
 
           <header>
         <Show when="signed-out">
