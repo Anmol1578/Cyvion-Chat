@@ -3,6 +3,8 @@ import cors from "cors";
 
 import "dotenv/config";
 
+import job from "./lib/cron.js";
+
 import fs from "fs";
 import path from "path";
 
@@ -42,7 +44,7 @@ app.listen(PORT,()=> {
     connectDB();
    console.log("Server in up and running on port:", PORT)
 
-if(process.env.NODE_ENV === "production")job.start();
+if (process.env.NODE_ENV === "production") job.start();
 
 
 
