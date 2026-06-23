@@ -3,8 +3,6 @@ import cors from "cors";
 
 import "dotenv/config";
 
-import job from "./lib/cron.js";
-
 import fs from "fs";
 import path from "path";
 
@@ -12,6 +10,9 @@ import { clerkMiddleware } from '@clerk/express';
 
 import User from "./models/user.model.js";
 import { connectDB } from "./lib/db.js";
+import job from "./lib/cron.js";
+
+import clerkWebhooks from "./webhooks/clerk.webhook.js";
 
 const app = express();
 
