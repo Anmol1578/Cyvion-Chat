@@ -36,10 +36,7 @@ app.get("/health", (req, res) => {
   res.status(200).json({ ok: true });
 });
 
-
 app.use("/api/auth", authRoutes);
-
-
 
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
