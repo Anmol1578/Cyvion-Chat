@@ -6,19 +6,22 @@ export async function protectRoute(req, res, next) {
     const { userId } = getAuth(req);
 
     if (!userId) {
-      res.status(401).json({ error: "Unauthorized" });
+      res.status(401).json({ message: "Unauthorized" });
+      return;
     }
 
     const user = await User.findOne({ clerkId: userId });
 
     if (!user) {
-      res.status(401).json({ error: "User profile is not synced yet" });
+      res.status(404).json({ message: "User profile is not synced yet" });
+      return;
     }
 
-    req.user = user; 
+    req.user = user;
+
     next();
   } catch (error) {
-    console.error("Error in protectRoute middleware:", error);
-    res.status(500).json({ error: "Internal server error" });
+    console.error("Error in protectRoute middleware:", error.message);
+    res.status(500).json({ message: "Internal server error" });
   }
 }
