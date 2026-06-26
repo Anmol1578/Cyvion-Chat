@@ -1,15 +1,14 @@
 import { useState } from "react";
-import './App.css'
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
+import { Button } from '@heroui/react';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
    <div>
-
-    <h1>MY FRONTEND APP</h1>
-
+   
+    <h1 className="text-4xl text-red-500 bg-blue-400">MY FRONTEND APP</h1>
           <header>
         <Show when="signed-out">
           <SignInButton mode="modal"/>
