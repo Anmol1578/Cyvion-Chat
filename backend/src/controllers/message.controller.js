@@ -1,5 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
+import { hasImagekitConfig, uploadChatMedia } from "../lib/imagekit.js";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 
 export async function getUserForSidebar(req, res) {
   try {
@@ -95,7 +97,9 @@ export async function sendMessage(req, res) {
 
     if (req.file) {
       if (!hasImageKitConfig()) {
-        return res.status(500).json({ message: "Media upload is not configured" });
+        return res
+          .status(500)
+          .json({ message: "Media upload is not configured" });
       }
 
       const url = await uploadChatMedia(req.file);
@@ -113,15 +117,11 @@ export async function sendMessage(req, res) {
 
     await newMessage.save();
 
-    /*  todo
     const receiverSocketId = getReceiverSocketId(receiverId);
     // only send the message in realtime if user is online
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("newMessage", newMessage);
     }
-
-    */
-
 
     res.status(201).json(newMessage);
   } catch (error) {
