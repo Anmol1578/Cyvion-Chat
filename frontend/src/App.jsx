@@ -10,6 +10,7 @@ function App() {
   const { isSignedIn, isLoaded } = useAuth();
 
   if (!isLoaded) return <PageLoader />
+  
 
   return (
     <ThemeProvider>
